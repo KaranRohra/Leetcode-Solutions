@@ -16,7 +16,8 @@ public class WordSubsets {
         );
     }
 }
-class Solution916 {
+//https://leetcode.com/problems/word-subsets/
+class Solution916 {//23 ms
     public List<String> wordSubsets(String[] A, String[] B) {
         List<String> ans=new ArrayList<>();
 
