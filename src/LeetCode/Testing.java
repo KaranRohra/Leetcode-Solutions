@@ -4,19 +4,48 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Testing {
-    public static void main(String[] args) {
-//        int count=0;
-//        count+=(123456789%10+123456789)/10;
-//        for (int i=1;i<=1000;i++)
-//            System.out.println(i);
-//        System.out.println(count);
-        //System.out.println(Arrays.toString(new Solution().maxSlidingWindow(new int[]{4, 3, 1, 2, 5, 3, 4, 7, 1, 9}, 4)));
-
+    static int[][] dp;
+    public static void main (String[] args) {
+        Scanner sc=new Scanner(System.in);
+        //System.out.println(new Solution().canPartitionKSubsets(new int[]{2,2,2,2,3,4,5},4));
+        System.out.println(new Solution().canPartitionKSubsets(new int[]{4, 3, 2, 3, 5, 2, 1},4));
     }
 }
-class Solution
-{
-
+class Solution {
+    int[][] dp;
+    int[] isVisited;
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        int n=nums.length,sum=0;
+        for(int i:nums)
+            sum+=i;
+        if(sum%k!=0)
+            return false;
+        isVisited=new int[n];
+        for(int i=n;i>0;i--) {
+            countSubset(nums, i, sum / k);
+            for (int j : isVisited) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+        return true;
+    }
+    public int countSubset(int[] a,int n,int sum){
+        if(sum==0)
+            return 1;
+        if(n==0)
+            return 0;
+        int count;
+        if(a[n-1]<=sum && isVisited[n-1]==0){
+            count=countSubset(a,n-1,sum-a[n-1]);
+            if(count==1){
+                isVisited[n-1]=1;
+                return 1;
+            }
+        }
+        count=countSubset(a,n-1,sum);
+        return count;
+    }
 }
 class TreeNode {
     int val;
