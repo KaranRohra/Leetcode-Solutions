@@ -2,14 +2,13 @@ package LeetCode;
 
 import java.util.*;
 
-public class Testing {
-    static int[][] dp;
-    public static void main (String[] args) {
-        Scanner sc=new Scanner(System.in);
-        //System.out.println(new Solution().canPartitionKSubsets(new int[]{2,2,2,2,3,4,5},4));
+public class VerticalOrderTraversalOfABinaryTree {//VVV IMP
+    public static void main(String[] args) {
+        System.out.println(new Solution987().verticalTraversal(new TreeNode().makeTree(3,9,20,null,null,15,7)));
     }
 }
-class Solution {
+//https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+class Solution987 {// 5 ms
     HashMap<TreeNode,Integer> map;
     int minIndex,maxIndex;
     public List<List<Integer>> verticalTraversal(TreeNode root) {
@@ -70,30 +69,4 @@ class Solution {
         }
         return ans;
     }
-}
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-        this.val = val;
-        this.left = left;
-        this.right = right;
-    }
-    public TreeNode makeTree(Integer ...a){
-        return new TreeNode(1);
-    }
-
-    public void display() {
-
-    }
-}
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
