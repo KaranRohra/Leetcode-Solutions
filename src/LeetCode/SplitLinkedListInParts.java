@@ -5,7 +5,8 @@ public class SplitLinkedListInParts {
         ListNode[] ans=new Solution725().splitListToParts(new ListNode(1),5);
     }
 }
-class Solution725 {
+//https://leetcode.com/problems/split-linked-list-in-parts/
+class Solution725 {// 0 ms
     public ListNode[] splitListToParts(ListNode head, int k) {
         ListNode[] ans=new ListNode[k];
         int size=size(head);
