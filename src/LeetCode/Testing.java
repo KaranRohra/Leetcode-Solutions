@@ -17,36 +17,38 @@ public class Testing {
         graph.add(new ArrayList<>(Arrays.asList(3,1)));
         graph.add(new ArrayList<>(Arrays.asList(1,0)));
 
-        System.out.println(new Solution().isCyclic(5, graph));
+        //System.out.println(new Solution().allPathsSourceTarget(5, graph));
     }
 }
 class Solution {
-    public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        boolean[] isVisited = new boolean[V];
-        int n=adj.size();
-        for(int i=0;i<n;i++){
-            int m=adj.get(i).size();
-            for(int j=0;j<m;j++){
-                if(adj.get(i).get(j)==i)
-                    return true;
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        List<List<Integer>> res = dfs(graph, 0);
+        return res == null ? new ArrayList<>() : res;
+    }
+
+    private List<List<Integer>> dfs(int[][] graph, int v) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (v == graph.length) {
+            res.add(new ArrayList<>(Collections.singletonList(v)));
+            return res;
+        }
+
+        int n = graph[v].length;
+
+        for (int i = 0; i < n; i++) {
+            List<List<Integer>> temp = dfs(graph, graph[v][i]);
+            if (temp != null) {
+
+                res.addAll(temp);
             }
         }
-        return false;
 
+        n = res.size();
+        for (int i = 0; i < n; i++) {
+            res.get(i).add(0,v);
+        }
+        return n == 0 ? null : res;
     }
-    // private boolean dfs(int v, ArrayList<ArrayList<Integer>> adj,int count){
-    //     isVisited[v]=true;
-    //     int n=adj.get(v).size();
-    //     for(int i=0;i<n;i++){
-    //         int x=adj.get(v).get(i);
-    //         if(x==v)
-    //             return true;
-    //         if(dfs(x,adj,count+1))
-    //             return true;
-
-    //     }
-    //     return false;
-    // }
 }
 class TreeNode {
     int val;
