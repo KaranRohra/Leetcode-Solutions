@@ -18,38 +18,57 @@ public class Testing {
         graph.add(new ArrayList<>(Arrays.asList(1,0)));
 
         //System.out.println(new Solution().allPathsSourceTarget(5, graph));
+        System.out.println(new Solution().reverseBits(-3));
     }
 }
 class Solution {
-    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        List<List<Integer>> res = dfs(graph, 0);
-        return res == null ? new ArrayList<>() : res;
+    // you need treat n as an unsigned value
+    public int reverseBits(int n) {
+        int[] binary = decimalToBinary(n);
+
+        if(binary[31]==0){
+            return binaryToDecimal(binary);
+        }
+        else{
+            return ~binaryToDecimal(binary);
+        }
+
     }
 
-    private List<List<Integer>> dfs(int[][] graph, int v) {
-        List<List<Integer>> res = new ArrayList<>();
-        if (v == graph.length) {
-            res.add(new ArrayList<>(Collections.singletonList(v)));
-            return res;
+    private int[] decimalToBinary(int n) {
+        int[] binary = new int[32];
+        int i = 31;
+        int res = n;
+        n = n < 0 ? -n : n;
+        while (n != 0) {
+            binary[i--] = n % 2;
+            n /= 2;
         }
+        if (res >= 0)
+            return binary;
 
-        int n = graph[v].length;
-
-        for (int i = 0; i < n; i++) {
-            List<List<Integer>> temp = dfs(graph, graph[v][i]);
-            if (temp != null) {
-
-                res.addAll(temp);
-            }
+        //2's Complement
+        i = 31;
+        while (i >= 0 && binary[i] == 0)
+            i--;
+        i--;
+        while (i >= 0) {
+            binary[i] = binary[i] == 0 ? 1 : 0;
+            i--;
         }
-
-        n = res.size();
-        for (int i = 0; i < n; i++) {
-            res.get(i).add(0,v);
+        return binary;
+    }
+    private int binaryToDecimal(int[] binary){
+        int n=0;
+        for(int i=0;i<32;i++){
+            if(binary[i]==1)
+                n+=Math.pow(2,i);
         }
-        return n == 0 ? null : res;
+        return n;
     }
 }
+
+
 class TreeNode {
     int val;
     TreeNode left;
