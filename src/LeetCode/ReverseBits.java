@@ -2,7 +2,7 @@ package LeetCode;
 
 public class ReverseBits {
     public static void main(String[] args) {
-        System.out.println(new Solution().reverseBits(43261596));
+        System.out.println(new Solution190().reverseBits(43261596));
     }
 }
 class Solution190 {
