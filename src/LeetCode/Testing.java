@@ -8,14 +8,14 @@ public class Testing {
     public static void main (String[] args) {
         Scanner sc=new Scanner(System.in);
         //System.out.println(new Solution().canPartitionKSubsets(new int[]{2,2,2,2,3,4,5},4));
-        ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
-
-        graph.add(new ArrayList<>(Arrays.asList(4,5)));// 0 is connected to 1,2,3
-        graph.add(new ArrayList<>(Arrays.asList(2,0)));
-        graph.add(new ArrayList<>(Arrays.asList(0,1)));
-        graph.add(new ArrayList<>(Arrays.asList(1,3)));
-        graph.add(new ArrayList<>(Arrays.asList(3,1)));
-        graph.add(new ArrayList<>(Arrays.asList(1,0)));
+//        ArrayList<ArrayList<Integer>> graph=new ArrayList<>();
+//
+//        graph.add(new ArrayList<>(Arrays.asList(4,5)));// 0 is connected to 1,2,3
+//        graph.add(new ArrayList<>(Arrays.asList(2,0)));
+//        graph.add(new ArrayList<>(Arrays.asList(0,1)));
+//        graph.add(new ArrayList<>(Arrays.asList(1,3)));
+//        graph.add(new ArrayList<>(Arrays.asList(3,1)));
+//        graph.add(new ArrayList<>(Arrays.asList(1,0)));
 
         //System.out.println(new Solution().allPathsSourceTarget(5, graph));
         System.out.println(new Solution().reverseBits(-3));
