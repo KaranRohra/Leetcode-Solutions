@@ -17,54 +17,38 @@ public class Testing {
 //        graph.add(new ArrayList<>(Arrays.asList(3,1)));
 //        graph.add(new ArrayList<>(Arrays.asList(1,0)));
 
-        //System.out.println(new Solution().allPathsSourceTarget(5, graph));
-        System.out.println(new Solution().reverseBits(-3));
+        System.out.println(new Solution().partitionLabels( "ababcbacadefegdehijhklij"));
+        //System.out.println(new Solution().reverseBits(-3));
     }
 }
 class Solution {
-    // you need treat n as an unsigned value
-    public int reverseBits(int n) {
-        int[] binary = decimalToBinary(n);
+    public List<Integer> partitionLabels(String S) {
+        List<Integer> res=new ArrayList<>();
+        char[] str=S.toCharArray();
+        int n=str.length,end=0,start=0;
 
-        if(binary[31]==0){
-            return binaryToDecimal(binary);
-        }
-        else{
-            return ~binaryToDecimal(binary);
-        }
+        int[] cnt=new int[26];
+        for(char c:str)
+            cnt[c-'a']++;
 
+        //ababcbacadefegdehijhklij
+        while(end<n){
+            cnt[str[end]-'a']--;
+            if(isPartitioned(cnt,str,start,end)){
+                res.add(end-start+1);
+                start=end+1;
+            }
+            end++;
+        }
+        return res;
     }
-
-    private int[] decimalToBinary(int n) {
-        int[] binary = new int[32];
-        int i = 31;
-        int res = n;
-        n = n < 0 ? -n : n;
-        while (n != 0) {
-            binary[i--] = n % 2;
-            n /= 2;
+    private boolean isPartitioned(int[] cnt,char[] str,int start,int end){
+        while (start<=end){
+            if(cnt[str[start]-'a']!=0)
+                return false;
+            start++;
         }
-        if (res >= 0)
-            return binary;
-
-        //2's Complement
-        i = 31;
-        while (i >= 0 && binary[i] == 0)
-            i--;
-        i--;
-        while (i >= 0) {
-            binary[i] = binary[i] == 0 ? 1 : 0;
-            i--;
-        }
-        return binary;
-    }
-    private int binaryToDecimal(int[] binary){
-        int n=0;
-        for(int i=0;i<32;i++){
-            if(binary[i]==1)
-                n+=Math.pow(2,i);
-        }
-        return n;
+        return true;
     }
 }
 
