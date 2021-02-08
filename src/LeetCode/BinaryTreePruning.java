@@ -3,7 +3,7 @@ package LeetCode;
 public class BinaryTreePruning {
     public static void main(String[] args) {
         TreeNode root=new Solution814().pruneTree(new TreeNode().makeTree(1,0,1,0,0,0,1));
-        root.display();
+        root.display(root);
     }
 }
 //https://leetcode.com/problems/binary-tree-pruning/
