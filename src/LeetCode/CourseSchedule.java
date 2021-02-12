@@ -11,7 +11,8 @@ public class CourseSchedule {
         }));
     }
 }
-class Solution207 {
+//https://leetcode.com/problems/course-schedule/
+class Solution207 {// 2 ms
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         List<List<Integer>> adj = new ArrayList<>();
         for(int i=0;i<numCourses;i++){
