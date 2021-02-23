@@ -3,7 +3,7 @@ package LeetCode;
 public class DeleteLeavesWithAGivenValue {
     public static void main(String[] args) {
         TreeNode root=new Solution1325().removeLeafNodes(new TreeNode().makeTree(1,2,3,4,5,2,2,2),2);
-        root.display();
+        root.display(root);
     }
 }
 //https://leetcode.com/problems/delete-leaves-with-a-given-value/submissions/
