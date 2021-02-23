@@ -1,4 +1,4 @@
-package leetCode;
+package LeetCode;
 
 import java.util.*;
 
@@ -11,6 +11,26 @@ public class MajorityElement {
         for(int i=0;i<n;i++)
             a[i]=sc.nextInt();
         System.out.println(s.majorityElement(a));
+        System.out.println(new Solution169MooreVotingAlgorithm().majorityElement(a));
+    }
+}
+//https://leetcode.com/problems/majority-element/
+class Solution169MooreVotingAlgorithm { // 1 ms and 4 incorrect submissions
+    public int majorityElement(int[] nums) {
+        int key=nums[0],value=1;
+        for(int i=1;i<nums.length;i++){
+            if(key==nums[i]){
+                value++;
+            }
+            else{
+                value--;
+            }
+            if(value==0){
+                key=nums[i];
+                value=1;
+            }
+        }
+        return key;
     }
 }
 class Solution169 {
